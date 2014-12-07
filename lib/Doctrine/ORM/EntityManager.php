@@ -157,7 +157,7 @@ use Doctrine\Common\Util\ClassUtils;
         $this->metadataFactory->setCacheDriver($this->config->getMetadataCacheImpl());
 
         $this->repositoryFactory = $config->getRepositoryFactory();
-        $this->unitOfWork        = new UnitOfWork($this);
+        $this->unitOfWork        = $this->getUnitOfWork();
         $this->proxyFactory      = new ProxyFactory(
             $this,
             $config->getProxyDir(),
@@ -755,6 +755,10 @@ use Doctrine\Common\Util\ClassUtils;
      */
     public function getUnitOfWork()
     {
+        if (!isset($this->unitOfWork)) {
+            $this->unitOfWork = new UnitOfWork($this);
+        }
+
         return $this->unitOfWork;
     }
 

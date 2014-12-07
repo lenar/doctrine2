@@ -485,7 +485,7 @@ class UnitOfWork implements PropertyChangedListener
     /**
      * Executes any extra updates that have been scheduled.
      */
-    private function executeExtraUpdates()
+    protected function executeExtraUpdates()
     {
         foreach ($this->extraUpdates as $oid => $update) {
             list ($entity, $changeset) = $update;
@@ -970,7 +970,7 @@ class UnitOfWork implements PropertyChangedListener
      *
      * @return void
      */
-    private function executeInserts($class)
+    protected function executeInserts($class)
     {
         $entities   = array();
         $className  = $class->name;
@@ -1022,7 +1022,7 @@ class UnitOfWork implements PropertyChangedListener
      *
      * @return void
      */
-    private function executeUpdates($class)
+    protected function executeUpdates($class)
     {
         $className          = $class->name;
         $persister          = $this->getEntityPersister($className);
@@ -1059,7 +1059,7 @@ class UnitOfWork implements PropertyChangedListener
      *
      * @return void
      */
-    private function executeDeletions($class)
+    protected function executeDeletions($class)
     {
         $className  = $class->name;
         $persister  = $this->getEntityPersister($className);
